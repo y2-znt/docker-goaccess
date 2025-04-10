@@ -67,8 +67,7 @@ docker compose up --build
 
 ## Accès aux Services
 
-- Reverse Proxy : http://localhost:50000
-- Interface GoAccess : http://localhost:50001
+- Reverse Proxy : http://localhost:8080- Interface GoAccess : http://localhost:8081
   - Authentification requise avec les credentials définis
 
 ## Spécifications Techniques
@@ -89,7 +88,7 @@ docker compose up --build
 
 - Authentification Basic Auth pour l'accès à GoAccess
 - Isolation réseau via un réseau Docker dédié
-- Ports non standards utilisés (50000, 50001)
+- Ports non standards utilisés (8080, 50001)
 
 ## Points Techniques Notables
 

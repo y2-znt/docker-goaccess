@@ -9,7 +9,7 @@ services:
       - ./logs:/var/log/nginx
       - ./.htpasswd:/etc/nginx/.htpasswd:ro
     ports:
-      - "50000:80"
+      - "8080:80"
     restart: always
     deploy:
       resources:
@@ -36,7 +36,7 @@ services:
       - ./logs:/var/log/nginx:ro
       - ./goaccess/.htpasswd:/etc/nginx/.htpasswd:ro
     ports:
-      - "50001:80"
+      - "8081:80"
     restart: always
     deploy:
       resources:
