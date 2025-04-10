@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  reverse-proxy:
+    build: ./reverse-proxy
+    container_name: nginx_proxy
+    hostname: proxy.local
+    volumes:
+      - ./logs:/var/log/nginx
+      - ./.htpasswd:/etc/nginx/.htpasswd:ro
+    ports:
+      - "50000:80"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+    mem_swappiness: 0
+    networks:
+      - monitoring_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      retries: 3
+
+  goaccess:
+    build: ./goaccess
+    container_name: goaccess_stats
+    hostname: goaccess.local
+    environment:
+      - GOACCESS_USER=${GOACCESS_USER}
+      - GOACCESS_PASSWORD=${GOACCESS_PASSWORD}
+    volumes:
+      - ./logs:/var/log/nginx:ro
+      - ./goaccess/.htpasswd:/etc/nginx/.htpasswd:ro
+    ports:
+      - "50001:80"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+    mem_swappiness: 0
+    networks:
+      - monitoring_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      retries: 3
+
+networks:
+  monitoring_network:
+    name: monitoring_net
+    driver: bridge
+
+volumes:
+  logs:
+    name: nginx_logs
