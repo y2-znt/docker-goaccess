@@ -1,0 +1,1 @@
+* * * * * root goaccess /var/log/nginx/access.log -o /var/www/html/reports/index.html --log-format=COMBINED --real-time-html --daemonize --persist > /dev/null 2>&1
