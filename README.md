@@ -52,14 +52,21 @@ docker-goaccess/
 
 ## Installation et Déploiement
 
-1. Créer un fichier .env avec les credentials :
+1. Cloner le repo :
+   
+```bash
+git clone https://github.com/y2-znt/docker-goaccess.git
+cd docker-goaccess
+```
+   
+2. Créer un fichier .env avec les credentials :
 
 ```bash
 GOACCESS_USER=votre_utilisateur
 GOACCESS_PASSWORD=votre_mot_de_passe
 ```
 
-2. Lancer les conteneurs :
+3. Lancer les conteneurs :
 
 ```bash
 docker compose up --build
@@ -67,7 +74,7 @@ docker compose up --build
 
 ## Accès aux Services
 
-- Reverse Proxy : http://localhost:8080- Interface GoAccess : http://localhost:8081
+- Reverse Proxy : http://localhost:8080 - Interface GoAccess : http://localhost:8081
   - Authentification requise avec les credentials définis
 
 ## Spécifications Techniques
